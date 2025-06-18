@@ -58,7 +58,7 @@ By using this software, you agree to use it solely for learning purposes.
 ### Using Poetry
 Clone the repository:
 ```bash
-git clone https://github.com/virattt/ai-hedge-fund.git
+git clone https://github.com/daryllundy/ai-hedge-fund.git
 cd ai-hedge-fund
 ```
 
@@ -257,11 +257,9 @@ run.bat --ticker AAPL,MSFT,NVDA --ollama backtest
 **Important**: Keep pull requests small and focused for easier review and merge.
 
 ## Feature Requests 💡
-Have an idea to make this AI Hedge Fund even better? Open an [issue](https://github.com/virattt/ai-hedge-fund/issues) tagged with `enhancement`.
+Have an idea to make this AI Hedge Fund even better? Open an [issue](https://github.com/daryllundy/ai-hedge-fund/issues) tagged with `enhancement`.
 
 ## License 📜
 This project is licensed under the MIT License—see the LICENSE file for details.
 
 ---
-
-**Join the revolution!** Star this repository, follow us on Twitter, and dive into the future of AI-driven investing today! 🌍💸
