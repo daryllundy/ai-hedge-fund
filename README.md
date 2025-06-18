@@ -11,7 +11,7 @@ This system employs several agents working together:
 5. Charlie Munger Agent - Warren Buffett's partner, only buys wonderful businesses at fair prices
 6. Michael Burry Agent - The Big Short contrarian who hunts for deep value
 7. Peter Lynch Agent - Practical investor who seeks "ten-baggers" in everyday businesses
-8. Phil Fisher Agent - Meticulous growth investor who uses deep "scuttlebutt" research 
+8. Phil Fisher Agent - Meticulous growth investor who uses deep "scuttlebutt" research
 9. Rakesh Jhunjhunwala Agent - The Big Bull of India
 10. Stanley Druckenmiller Agent - Macro legend who hunts for asymmetric opportunities with growth potential
 11. Warren Buffett Agent - The oracle of Omaha, seeks wonderful companies at a fair price
@@ -21,7 +21,7 @@ This system employs several agents working together:
 15. Technicals Agent - Analyzes technical indicators and generates trading signals
 16. Risk Manager - Calculates risk metrics and sets position limits
 17. Portfolio Manager - Makes final trading decisions and generates orders
-    
+
 <img width="1042" alt="Screenshot 2025-03-22 at 6 19 07 PM" src="https://github.com/user-attachments/assets/cbae3dcf-b571-490d-b0ad-3f0f035ac0d4" />
 
 
@@ -70,6 +70,12 @@ curl -sSL https://install.python-poetry.org | python3 -
 2. Install dependencies:
 ```bash
 poetry install
+```
+
+3. Install pre-commit hooks for security checks:
+```bash
+pipx install pre-commit
+pre-commit install
 ```
 
 3. Set up your environment variables:
@@ -189,7 +195,7 @@ You can optionally specify the start and end dates to make decisions for a speci
 
 ```bash
 # With Poetry:
-poetry run python src/main.py --ticker AAPL,MSFT,NVDA --start-date 2024-01-01 --end-date 2024-03-01 
+poetry run python src/main.py --ticker AAPL,MSFT,NVDA --start-date 2024-01-01 --end-date 2024-03-01
 
 # With Docker (from docker/ directory):
 # On Linux/Mac:

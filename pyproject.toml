@@ -53,3 +53,11 @@ include = '\.pyi?$'
 [tool.isort]
 profile = "black"
 force_alphabetical_sort_within_sections = true
+
+[tool.bandit]
+exclude_dirs = ["tests", "venv", "ENV"]
+skips = ["B101"]  # Skip assert warnings
+targets = ["src", "app"]
+# Severity levels: HIGH, MEDIUM, LOW
+# Confidence levels: HIGH, MEDIUM, LOW
+baseline = ".bandit.baseline"

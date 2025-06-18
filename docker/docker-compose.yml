@@ -25,6 +25,8 @@ services:
     command: python src/main.py --ticker AAPL,MSFT,NVDA
     environment:
       - PYTHONUNBUFFERED=1
+      # For development only - in production, use HTTPS or a secure reverse proxy
+      # Set ALLOW_PLAIN_OLLAMA=1 to suppress security warnings
       - OLLAMA_BASE_URL=http://ollama:11434
       - PYTHONPATH=/app
     tty: true
@@ -99,4 +101,4 @@ services:
     stdin_open: true
 
 volumes:
-  ollama_data: 
+  ollama_data:
