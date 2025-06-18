@@ -1,43 +1,44 @@
-# AI Hedge Fund
+# 🚀 AI Hedge Fund: Revolutionizing Investment with Artificial Intelligence! 🌟
 
-This is a proof of concept for an AI-powered hedge fund.  The goal of this project is to explore the use of AI to make trading decisions.  This project is for **educational** purposes only and is not intended for real trading or investment.
+Welcome to the future of investing! This **AI-powered Hedge Fund** is a groundbreaking proof of concept that harnesses the power of artificial intelligence to make smarter, data-driven trading decisions. Imagine having the world's greatest investment minds at your fingertips—now, through AI, you can! This project is for **educational purposes only** and not intended for real trading or investment, but it offers a thrilling glimpse into what’s possible. Ready to explore the cutting edge of finance? Let’s dive in! 💰
 
-This system employs several agents working together:
+## Why This Matters
+In a world where markets move faster than ever, AI offers unparalleled insights by simulating the strategies of legendary investors. Our system brings together **17 unique AI agents**, each modeled after iconic financial gurus and specialized analysis techniques, to create a dynamic, collaborative decision-making engine. From Warren Buffett’s value-driven approach to Cathie Wood’s innovation focus, we’ve got it all covered.
 
-1. Aswath Damodaran Agent - The Dean of Valuation, focuses on story, numbers, and disciplined valuation
-2. Ben Graham Agent - The godfather of value investing, only buys hidden gems with a margin of safety
-3. Bill Ackman Agent - An activist investor, takes bold positions and pushes for change
-4. Cathie Wood Agent - The queen of growth investing, believes in the power of innovation and disruption
-5. Charlie Munger Agent - Warren Buffett's partner, only buys wonderful businesses at fair prices
-6. Michael Burry Agent - The Big Short contrarian who hunts for deep value
-7. Peter Lynch Agent - Practical investor who seeks "ten-baggers" in everyday businesses
-8. Phil Fisher Agent - Meticulous growth investor who uses deep "scuttlebutt" research
-9. Rakesh Jhunjhunwala Agent - The Big Bull of India
-10. Stanley Druckenmiller Agent - Macro legend who hunts for asymmetric opportunities with growth potential
-11. Warren Buffett Agent - The oracle of Omaha, seeks wonderful companies at a fair price
-12. Valuation Agent - Calculates the intrinsic value of a stock and generates trading signals
-13. Sentiment Agent - Analyzes market sentiment and generates trading signals
-14. Fundamentals Agent - Analyzes fundamental data and generates trading signals
-15. Technicals Agent - Analyzes technical indicators and generates trading signals
-16. Risk Manager - Calculates risk metrics and sets position limits
-17. Portfolio Manager - Makes final trading decisions and generates orders
-
+Check out this stunning visualization of our AI Hedge Fund in action:
 <img width="1042" alt="Screenshot 2025-03-22 at 6 19 07 PM" src="https://github.com/user-attachments/assets/cbae3dcf-b571-490d-b0ad-3f0f035ac0d4" />
 
-
-**Note**: the system simulates trading decisions, it does not actually trade.
+**Note**: This system simulates trading decisions—it does not execute real trades. But the insights are as real as it gets!
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/virattt?style=social)](https://twitter.com/virattt)
 
-## Disclaimer
+## Meet Our AI Investment Titans 🧠
+Our AI agents work together to analyze, strategize, and simulate investment decisions:
+1. **Aswath Damodaran Agent** - The Dean of Valuation, weaving stories with disciplined numbers.
+2. **Ben Graham Agent** - The godfather of value investing, hunting hidden gems with a margin of safety.
+3. **Bill Ackman Agent** - An activist investor, taking bold positions to drive change.
+4. **Cathie Wood Agent** - The queen of growth, betting big on innovation and disruption.
+5. **Charlie Munger Agent** - Buffett’s partner, seeking wonderful businesses at fair prices.
+6. **Michael Burry Agent** - The Big Short contrarian, uncovering deep value.
+7. **Peter Lynch Agent** - A practical investor chasing "ten-baggers" in everyday businesses.
+8. **Phil Fisher Agent** - A meticulous growth investor with deep "scuttlebutt" research.
+9. **Rakesh Jhunjhunwala Agent** - The Big Bull of India, mastering emerging markets.
+10. **Stanley Druckenmiller Agent** - A macro legend finding asymmetric growth opportunities.
+11. **Warren Buffett Agent** - The Oracle of Omaha, buying wonderful companies at fair prices.
+12. **Valuation Agent** - Calculates intrinsic stock value and generates trading signals.
+13. **Sentiment Agent** - Gauges market mood to inform decisions.
+14. **Fundamentals Agent** - Dives deep into financial data for actionable insights.
+15. **Technicals Agent** - Analyzes charts and indicators for precise timing.
+16. **Risk Manager** - Keeps risk in check with calculated position limits.
+17. **Portfolio Manager** - The final decision-maker, turning analysis into action.
 
-This project is for **educational and research purposes only**.
-
-- Not intended for real trading or investment
-- No investment advice or guarantees provided
-- Creator assumes no liability for financial losses
-- Consult a financial advisor for investment decisions
-- Past performance does not indicate future results
+## Disclaimer ⚠️
+This project is for **educational and research purposes only**:
+- Not intended for real trading or investment.
+- No investment advice or guarantees provided.
+- Creator assumes no liability for financial losses.
+- Consult a financial advisor for investment decisions.
+- Past performance does not indicate future results.
 
 By using this software, you agree to use it solely for learning purposes.
 
@@ -52,10 +53,9 @@ By using this software, you agree to use it solely for learning purposes.
 - [Feature Requests](#feature-requests)
 - [License](#license)
 
-## Setup
+## Setup 🛠️
 
 ### Using Poetry
-
 Clone the repository:
 ```bash
 git clone https://github.com/virattt/ai-hedge-fund.git
@@ -78,19 +78,19 @@ pipx install pre-commit
 pre-commit install
 ```
 
-3. Set up your environment variables:
+4. Set up your environment variables:
 ```bash
 # Create .env file for your API keys
 cp .env.example .env
 ```
 
-4. Set your API keys:
+5. Set your API keys:
 ```bash
-# For running LLMs hosted by openai (gpt-4o, gpt-4o-mini, etc.)
+# For running LLMs hosted by OpenAI (gpt-4o, gpt-4o-mini, etc.)
 # Get your OpenAI API key from https://platform.openai.com/
 OPENAI_API_KEY=your-openai-api-key
 
-# For running LLMs hosted by groq (deepseek, llama3, etc.)
+# For running LLMs hosted by Groq (deepseek, llama3, etc.)
 # Get your Groq API key from https://groq.com/
 GROQ_API_KEY=your-groq-api-key
 
@@ -100,8 +100,7 @@ FINANCIAL_DATASETS_API_KEY=your-financial-datasets-api-key
 ```
 
 ### Using Docker
-
-1. Make sure you have Docker installed on your system. If not, you can download it from [Docker's official website](https://www.docker.com/get-started).
+1. Make sure you have Docker installed on your system. If not, download it from [Docker's official website](https://www.docker.com/get-started).
 
 2. Clone the repository:
 ```bash
@@ -131,13 +130,11 @@ cd docker
 run.bat build
 ```
 
-**Important**: You must set `OPENAI_API_KEY`, `GROQ_API_KEY`, `ANTHROPIC_API_KEY`, or `DEEPSEEK_API_KEY` for the hedge fund to work.  If you want to use LLMs from all providers, you will need to set all API keys.
+**Important**: You must set `OPENAI_API_KEY`, `GROQ_API_KEY`, `ANTHROPIC_API_KEY`, or `DEEPSEEK_API_KEY` for the hedge fund to work. If you want to use LLMs from all providers, set all API keys.
 
-Financial data for AAPL, GOOGL, MSFT, NVDA, and TSLA is free and does not require an API key.
+Financial data for AAPL, GOOGL, MSFT, NVDA, and TSLA is free and does not require an API key. For any other ticker, set the `FINANCIAL_DATASETS_API_KEY` in the .env file.
 
-For any other ticker, you will need to set the `FINANCIAL_DATASETS_API_KEY` in the .env file.
-
-## Usage
+## Usage 🚀
 
 ### Running the Hedge Fund
 
@@ -148,7 +145,6 @@ poetry run python src/main.py --ticker AAPL,MSFT,NVDA
 
 #### With Docker
 **Note**: All Docker commands must be run from the `docker/` directory.
-
 ```bash
 # Navigate to the docker directory first
 cd docker
@@ -163,8 +159,7 @@ run.bat --ticker AAPL,MSFT,NVDA main
 **Example Output:**
 <img width="992" alt="Screenshot 2025-01-06 at 5 50 17 PM" src="https://github.com/user-attachments/assets/e8ca04bf-9989-4a7d-a8b4-34e04666663b" />
 
-You can also specify a `--ollama` flag to run the AI hedge fund using local LLMs.
-
+You can also specify a `--ollama` flag to run the AI hedge fund using local LLMs:
 ```bash
 # With Poetry:
 poetry run python src/main.py --ticker AAPL,MSFT,NVDA --ollama
@@ -177,8 +172,7 @@ poetry run python src/main.py --ticker AAPL,MSFT,NVDA --ollama
 run.bat --ticker AAPL,MSFT,NVDA --ollama main
 ```
 
-You can also specify a `--show-reasoning` flag to print the reasoning of each agent to the console.
-
+You can also specify a `--show-reasoning` flag to print the reasoning of each agent:
 ```bash
 # With Poetry:
 poetry run python src/main.py --ticker AAPL,MSFT,NVDA --show-reasoning
@@ -191,8 +185,7 @@ poetry run python src/main.py --ticker AAPL,MSFT,NVDA --show-reasoning
 run.bat --ticker AAPL,MSFT,NVDA --show-reasoning main
 ```
 
-You can optionally specify the start and end dates to make decisions for a specific time period.
-
+Optionally specify start and end dates for specific time periods:
 ```bash
 # With Poetry:
 poetry run python src/main.py --ticker AAPL,MSFT,NVDA --start-date 2024-01-01 --end-date 2024-03-01
@@ -214,7 +207,6 @@ poetry run python src/backtester.py --ticker AAPL,MSFT,NVDA
 
 #### With Docker
 **Note**: All Docker commands must be run from the `docker/` directory.
-
 ```bash
 # Navigate to the docker directory first
 cd docker
@@ -229,9 +221,7 @@ run.bat --ticker AAPL,MSFT,NVDA backtest
 **Example Output:**
 <img width="941" alt="Screenshot 2025-01-06 at 5 47 52 PM" src="https://github.com/user-attachments/assets/00e794ea-8628-44e6-9a84-8f8a31ad3b47" />
 
-
-You can optionally specify the start and end dates to backtest over a specific time period.
-
+Optionally specify start and end dates to backtest over a specific period:
 ```bash
 # With Poetry:
 poetry run python src/backtester.py --ticker AAPL,MSFT,NVDA --start-date 2024-01-01 --end-date 2024-03-01
@@ -244,7 +234,7 @@ poetry run python src/backtester.py --ticker AAPL,MSFT,NVDA --start-date 2024-01
 run.bat --ticker AAPL,MSFT,NVDA --start-date 2024-01-01 --end-date 2024-03-01 backtest
 ```
 
-You can also specify a `--ollama` flag to run the backtester using local LLMs.
+You can also specify a `--ollama` flag to run the backtester using local LLMs:
 ```bash
 # With Poetry:
 poetry run python src/backtester.py --ticker AAPL,MSFT,NVDA --ollama
@@ -257,20 +247,21 @@ poetry run python src/backtester.py --ticker AAPL,MSFT,NVDA --ollama
 run.bat --ticker AAPL,MSFT,NVDA --ollama backtest
 ```
 
-## Contributing
+## Contributing 🤝
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push to the branch.
+5. Create a Pull Request.
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+**Important**: Keep pull requests small and focused for easier review and merge.
 
-**Important**: Please keep your pull requests small and focused.  This will make it easier to review and merge.
+## Feature Requests 💡
+Have an idea to make this AI Hedge Fund even better? Open an [issue](https://github.com/virattt/ai-hedge-fund/issues) tagged with `enhancement`.
 
-## Feature Requests
+## License 📜
+This project is licensed under the MIT License—see the LICENSE file for details.
 
-If you have a feature request, please open an [issue](https://github.com/virattt/ai-hedge-fund/issues) and make sure it is tagged with `enhancement`.
+---
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+**Join the revolution!** Star this repository, follow us on Twitter, and dive into the future of AI-driven investing today! 🌍💸
