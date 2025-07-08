@@ -1,14 +1,25 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends, Request
 from fastapi.responses import StreamingResponse
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 import asyncio
+import logging
 
 from app.backend.models.schemas import ErrorResponse, HedgeFundRequest
 from app.backend.models.events import StartEvent, ProgressUpdateEvent, ErrorEvent, CompleteEvent
 from app.backend.services.graph import create_graph, parse_hedge_fund_response, run_graph_async
 from app.backend.services.portfolio import create_portfolio
+from app.backend.security import verify_token, RATE_LIMIT_CALLS, RATE_LIMIT_PERIOD
 from src.utils.progress import progress
 from src.utils.analysts import get_agents_list
 from src.llm.models import get_models_list
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Rate limiter
+limiter = Limiter(key_func=get_remote_address)
 
 router = APIRouter(prefix="/hedge-fund")
 
@@ -17,10 +28,17 @@ router = APIRouter(prefix="/hedge-fund")
     responses={
         200: {"description": "Successful response with streaming updates"},
         400: {"model": ErrorResponse, "description": "Invalid request parameters"},
+        401: {"model": ErrorResponse, "description": "Authentication required"},
+        429: {"model": ErrorResponse, "description": "Rate limit exceeded"},
         500: {"model": ErrorResponse, "description": "Internal server error"},
     },
 )
-async def run_hedge_fund(request: HedgeFundRequest):
+@limiter.limit(f"{RATE_LIMIT_CALLS}/{RATE_LIMIT_PERIOD}s")
+async def run_hedge_fund(
+    req: Request,
+    request: HedgeFundRequest, 
+    auth_data: dict = Depends(verify_token)
+):
     try:
         # Create the portfolio
         portfolio = create_portfolio(request.initial_cash, request.margin_requirement, request.tickers)
@@ -103,36 +121,48 @@ async def run_hedge_fund(request: HedgeFundRequest):
         return StreamingResponse(event_generator(), media_type="text/event-stream")
 
     except HTTPException as e:
+        logger.error(f"HTTP error in run_hedge_fund: {e.detail}")
         raise e
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"An error occurred while processing the request: {str(e)}")
+        logger.error(f"Unexpected error in run_hedge_fund: {str(e)}")
+        raise HTTPException(status_code=500, detail="An error occurred while processing the request")
 
 @router.get(
     path="/agents",
     responses={
         200: {"description": "List of available agents"},
+        401: {"model": ErrorResponse, "description": "Authentication required"},
+        429: {"model": ErrorResponse, "description": "Rate limit exceeded"},
         500: {"model": ErrorResponse, "description": "Internal server error"},
     },
 )
-async def get_agents():
+@limiter.limit(f"{RATE_LIMIT_CALLS * 2}/{RATE_LIMIT_PERIOD}s")  # More lenient for GET requests
+async def get_agents(req: Request, auth_data: dict = Depends(verify_token)):
     """Get the list of available agents."""
     try:
+        logger.info(f"User {auth_data['username']} requested agents list")
         return {"agents": get_agents_list()}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to retrieve agents: {str(e)}")
+        logger.error(f"Error retrieving agents: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve agents")
 
 
 @router.get(
     path="/language-models",
     responses={
         200: {"description": "List of available LLMs"},
+        401: {"model": ErrorResponse, "description": "Authentication required"},
+        429: {"model": ErrorResponse, "description": "Rate limit exceeded"},
         500: {"model": ErrorResponse, "description": "Internal server error"},
     },
 )
-async def get_language_models():
+@limiter.limit(f"{RATE_LIMIT_CALLS * 2}/{RATE_LIMIT_PERIOD}s")  # More lenient for GET requests
+async def get_language_models(req: Request, auth_data: dict = Depends(verify_token)):
     """Get the list of available models."""
     try:
+        logger.info(f"User {auth_data['username']} requested models list")
         return {"models": get_models_list()}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to retrieve models: {str(e)}")
+        logger.error(f"Error retrieving models: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve models")
 

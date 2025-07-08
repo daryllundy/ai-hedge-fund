@@ -10,8 +10,24 @@ services:
     volumes:
       - ollama_data:/root/.ollama
     ports:
-      - "11434:11434"
+      - "127.0.0.1:11434:11434"  # Bind to localhost only
     restart: unless-stopped
+    # Security hardening
+    read_only: false  # Ollama needs write access
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+    networks:
+      - hedge-fund-network
 
   hedge-fund:
     build:
@@ -20,8 +36,8 @@ services:
     image: ai-hedge-fund
     depends_on:
       - ollama
-    volumes:
-      - ../.env:/app/.env
+    env_file:
+      - ../.env
     command: python src/main.py --ticker AAPL,MSFT,NVDA
     environment:
       - PYTHONUNBUFFERED=1
@@ -29,8 +45,22 @@ services:
       # Set ALLOW_PLAIN_OLLAMA=1 to suppress security warnings
       - OLLAMA_BASE_URL=http://ollama:11434
       - PYTHONPATH=/app
-    tty: true
-    stdin_open: true
+    # Security hardening
+    read_only: false  # Application needs write access for caching
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+    networks:
+      - hedge-fund-network
 
   hedge-fund-reasoning:
     build:
@@ -39,15 +69,29 @@ services:
     image: ai-hedge-fund
     depends_on:
       - ollama
-    volumes:
-      - ../.env:/app/.env
+    env_file:
+      - ../.env
     command: python src/main.py --ticker AAPL,MSFT,NVDA --show-reasoning
     environment:
       - PYTHONUNBUFFERED=1
       - OLLAMA_BASE_URL=http://ollama:11434
       - PYTHONPATH=/app
-    tty: true
-    stdin_open: true
+    # Security hardening
+    read_only: false
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+    networks:
+      - hedge-fund-network
 
   hedge-fund-ollama:
     build:
@@ -56,15 +100,29 @@ services:
     image: ai-hedge-fund
     depends_on:
       - ollama
-    volumes:
-      - ../.env:/app/.env
+    env_file:
+      - ../.env
     command: python src/main.py --ticker AAPL,MSFT,NVDA --ollama
     environment:
       - PYTHONUNBUFFERED=1
       - OLLAMA_BASE_URL=http://ollama:11434
       - PYTHONPATH=/app
-    tty: true
-    stdin_open: true
+    # Security hardening
+    read_only: false
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+    networks:
+      - hedge-fund-network
 
   backtester:
     build:
@@ -73,15 +131,29 @@ services:
     image: ai-hedge-fund
     depends_on:
       - ollama
-    volumes:
-      - ../.env:/app/.env
+    env_file:
+      - ../.env
     command: python src/backtester.py --ticker AAPL,MSFT,NVDA
     environment:
       - PYTHONUNBUFFERED=1
       - OLLAMA_BASE_URL=http://ollama:11434
       - PYTHONPATH=/app
-    tty: true
-    stdin_open: true
+    # Security hardening
+    read_only: false
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+    networks:
+      - hedge-fund-network
 
   backtester-ollama:
     build:
@@ -90,15 +162,39 @@ services:
     image: ai-hedge-fund
     depends_on:
       - ollama
-    volumes:
-      - ../.env:/app/.env
+    env_file:
+      - ../.env
     command: python src/backtester.py --ticker AAPL,MSFT,NVDA --ollama
     environment:
       - PYTHONUNBUFFERED=1
       - OLLAMA_BASE_URL=http://ollama:11434
       - PYTHONPATH=/app
-    tty: true
-    stdin_open: true
+    # Security hardening
+    read_only: false
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+    networks:
+      - hedge-fund-network
 
 volumes:
   ollama_data:
+
+networks:
+  hedge-fund-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: hedge-fund-br
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
